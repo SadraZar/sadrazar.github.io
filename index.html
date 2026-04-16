@@ -1,175 +1,488 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="author" content="Sadra Zargarzadeh">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="google-site-verification" content="lTEftlPw74sVyIaIlJS02xcDDiBKU6kuyORD2FXTrn0" />
-    
-    <title>Sadra Zargarzadeh</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sadra Zargarzadeh</title>
+  <meta name="description" content="Sadra Zargarzadeh — M.Sc. researcher in multimodal foundation models, surgical robotics, and robot learning." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #fafafa;
+      --text: #1f1f1f;
+      --muted: #666;
+      --line: #e5e5e5;
+      --link: #1772d0;
+      --link-hover: #0f4f94;
+      --accent: #b509ac;
+      --maxw: 980px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.04);
+      --radius: 16px;
+    }
 
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <link rel="icon" type="image/png" href="images/ml_icon.png">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.55;
+    }
 
-    <style>
-      .accordion {
-        background-color: #eee;
-        color: #444;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: right;
-        outline: none;
-        font-size: 22px;
-        font-family: monospace;
-        transition: 0.4s;
+    a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    a:hover { color: var(--link-hover); }
+
+    .container {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 18px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 34px;
+      align-items: center;
+      padding: 42px 0 28px;
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      line-height: 1.1;
+      margin: 0 0 10px;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.03rem;
+      margin-bottom: 14px;
+    }
+
+    .hero p { margin: 0 0 12px; }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      margin-top: 14px;
+      font-size: 0.98rem;
+    }
+
+    .highlight-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .vector {
+    color: #e6007e;
+    font-weight: bold;
+    }
+
+    .eth {
+    color: #000000;
+    font-weight: bold;
+    }
+
+    .epfl {
+    color: #e2001a;
+    font-weight: bold;
+    }
+    .ualberta {
+    color: #007C41; /* UAlberta green */
+    font-weight: bold;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: var(--panel);
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 22px 0 6px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 400;
+      margin: 0 0 16px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+
+    .news-item,
+    .entry,
+    .mini-entry {
+      margin-bottom: 16px;
+    }
+
+    .news-date,
+    .meta,
+    .muted {
+      color: var(--muted);
+    }
+
+    .publication {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      padding: 18px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .publication-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      /* border: 1px solid var(--line); */
+      /* background: linear-gradient(135deg, #f6f6f6, #ececec); */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 0.95rem;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .publication-thumb img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .pub-title {
+      font-size: 1.08rem;
+      margin: 0 0 6px;
+    }
+
+    .pub-authors,
+    .pub-venue,
+    .pub-desc {
+      margin: 0 0 8px;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      font-size: 0.95rem;
+    }
+
+    .pub-links a {
+      border: 1px solid var(--line);
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--panel);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .entry-title {
+      margin: 0 0 4px;
+      font-size: 1.02rem;
+    }
+
+    .entry ul,
+    .card ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .project {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+
+    .project h3,
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .footer {
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 34px 0 50px;
+    }
+
+    .small-note {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .star-name {
+      font-weight: 700;
+    }
+
+    @media (max-width: 840px) {
+      .hero,
+      .publication,
+      .two-col,
+      .project-grid {
+        grid-template-columns: 1fr;
       }
 
-      .active, .accordion:hover {
-        background-color: #ccc;
+      .hero {
+        padding-top: 28px;
       }
 
-      .panel {
-        padding: 0 0px;
-        width:100%;
-        vertical-align:middle;
-        background-color: #f9f9f9;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
+      .hero-photo {
+        max-width: 220px;
       }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Sadra Zargarzadeh</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <!-- <a href="#experience">Experience</a> -->
+        <!-- <a href="#projects">Projects</a> -->
+        <a href="#service">Service</a>
+      </nav>
+    </div>
+  </header>
 
-      .collapsible {
-        background-color: #f9f9f9;
-        cursor: pointer;
-        width: 100%;
-        border: none;
-        text-align: right;
-        font-family: monospace;
-        transition: 0.4s;
-      }
+  <main class="container">
+    <section id="about" class="hero">
+      <div class="hero-photo">
+        <!-- Replace with your profile image path -->
+        <img src="images/SadraZar.jpg" alt="Portrait of Sadra Zargarzadeh" />
+      </div>
+      <div>
+        <h1>Sadra Zargarzadeh</h1>
+        <div class="subtitle">
+          M.Sc. in Electrical and Computer Engineering, University of Alberta
+        </div>
+        <p>
+          I am an M.Sc. candidate at the University of Alberta advised by
+          <a href="https://www.ece.ualberta.ca/~mtavakol/pmwiki/">Prof. Mahdi Tavakoli</a>, where I work on
+          multimodal foundation models and surgical robot learning.
+          My research aims to build intelligent robotic systems that can perceive,
+          reason, and act safely in medical environments.
+        </p>
+        <p>
+          I have also conducted research at the <a href="https://vectorinstitute.ai/">Vector Institute</a>, <a href="https://srl.ethz.ch/">ETH Zurich (Soft Robotics Lab)</a>, and <a href="https://www.epfl.ch/labs/create/">EPFL (CREATE Lab)</a> through competitive fellowships and internships, working on surgical and soft robotic systems. 
+          I received my B.Sc. in Mechanical Engineering from Sharif University of Technology.
+        </p>
+        <div class="hero-links">
+          <a href="mailto:sadra.zar@ualberta.ca">Email</a>
+          <a href="#">CV</a>
+          <a href="https://scholar.google.com/citations?user=q2tkWIMAAAAJ&hl=en">Google Scholar</a>
+          <a href="http://www.linkedin.com/in/sadrazar/">LinkedIn</a>
+          <a href="https://github.com/sadrazar">GitHub</a>
+        </div>
+        <div class="highlight-row">
+          <span class="pill">C.R. James Award for Best Master’s Thesis in ECE, <span class="ualberta">University of Alberta</span> (2025)</span>
+          <span class="pill">
+          Research Fellowships at 
+          <span class="vector">Vector Institute</span> (2025), 
+          <span class="eth">ETH Zurich</span> (2024), and 
+          <span class="epfl">EPFL</span> (2023).
+        </span>
+          <!-- <span class="pill">Research Fellow at Vector Institute (2025), ETH Zurich (2024), and EPFL (2023).</span> -->
+        </div>
+      </div>
+    </section>
 
-      .active, .collapsible:hover {
-        background-color: #ccc;
-      }
+    <section id="news">
+      <h2>News</h2>
+      <div class="news-item">
+        <span class="news-date">04-2026</span> Our paper "Speak2Move", has been accepted to IEEE BioRob 2026! (Edmonton, Canada)
+      </div>
+      <div class="news-item">
+        <span class="news-date">01-2026</span> Our paper "SurgiDiff", has been accepted to IEEE ISMR 2026! (Knoxville, USA)
+      </div>
+      <div class="news-item">
+        <span class="news-date">10-2025</span> 
+          I presented our RA-L paper at IEEE IROS 2025! (Hangzhou, China)<br>
+          Awarded Best Oral Presentation Award at the Workshop on Soft Tissue Manipulation in Robotic Surgery at IEEE IROS 2025!
+      </div>
+      <div class="news-item">
+        <span class="news-date">06-2025</span> I successfuly defended my M.Sc. Thesis! Awarded C.R. James Best Thesis Award in ECE, University of Alberta!
+      </div>
+    </section>
 
-      .content {
-        display: none;
-        overflow: hidden;
-        background-color: #f9f9f9;
-        transition: max-height 0.4s ease-out;
-      }
-    </style>  
-  </head>
+    <section id="publications">
+      <h2>Selected Publications</h2>
 
-  <body>
+      <article class="publication">
+        <div class="publication-thumb"><img src="images/Blood_Pools.png" alt="Blood Suction Demo"></div>
+        <div>
+          <p class="pub-title"><strong>From Decision to Action in Surgical Autonomy: Multi-Modal Large Language Models for Robot-Assisted Blood Suction</strong></p>
+          <p class="pub-authors"><span class="star-name">Sadra Zargarzadeh</span>, M. Mirzaei, Y. Ou, M. Tavakoli</p>
+          <p class="pub-venue"><em>IEEE Robotics and Automation Letters (RA-L), 2025</em></p>
+          <!-- <p class="pub-desc">
+            A multimodal LLM framework for autonomous blood suction in robot-assisted surgery,
+            connecting high-level reasoning to action generation in a safety-critical surgical setting.
+          </p> -->
+          <div class="pub-links">
+            <a href="https://ieeexplore.ieee.org/abstract/document/10855495">paper</a>
+            <a href="https://tbs-ualberta.github.io/CRESSim/">project page</a>
+            <!-- <a href="#">code</a> -->
+            <a href="https://www.youtube.com/watch?v=Dhv8LgM1rXI">video</a>
+          </div>
+        </div>
+      </article>
 
-    <table style="width:100%;max-width:850px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-      <tbody>
-      <tr style="padding:0px">
-      <td style="padding:0px">
+      <article class="publication">
+        <div class="publication-thumb"><img src="images/Peg_Board.jpg" alt="Peg Board"></div>
+        <div>
+          <p class="pub-title"><strong>Enhanced Reasoning and Task Planning for Surgical Autonomy Using Multi-Modal Large Language Models With Gradual Learning</strong></p>
+          <p class="pub-authors"><span class="star-name">Sadra Zargarzadeh</span>, J. Okanlawon, M. Mirzaei, M. Mohammadi, M. Tavakoli</p>
+          <p class="pub-venue"><em>Journal of Biomimetics, Intelligence and Robotics, 2025 <a href="https://www.sciencedirect.com/journal/biomimetic-intelligence-and-robotics/about/editors-choice/the-top-four-selected-papers-in-the-issue-1-2026-are">(Editor's Choice Paper)</a></em></p>
+          <!-- <p class="pub-desc">
+            A gradual learning approach for improving multimodal LLM reasoning and task planning in surgical training scenarios.
+          </p> -->
+          <div class="pub-links">
+            <a href="https://www.sciencedirect.com/science/article/pii/S2667379726000057?via%3Dihub">paper</a>
+            <!-- <a href="#">bibtex</a> -->
+            <a href="https://www.sciencedirect.com/science/article/pii/S2667379726000057?via%3Dihub#:~:text=Video%20S1.%20This%20video%20showcases%20gradual%20learning%20that%20improves%20LLM%2Ddriven%20task%20planning%20for%20complex%2C%20long%2Dhorizon%20surgical%20training%20tasks.">video</a>
+          </div>
+        </div>
+      </article>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-          <tbody>
-          <tr style="padding:0px">
+      <article class="publication">
+        <div class="publication-thumb"><img src="images/Speak2Move.png" alt="Speak2Move"></div>
+        <div>
+          <p class="pub-title"><strong>Speak2Move: A Vision-Language-Based Semantic Mapping Framework for Autonomous Navigation in Assistive Robots</strong></p>
+          <p class="pub-authors"><span class="star-name">Sadra Zargarzadeh</span>*, A. Siegers*, M. Tavakoli</p>
+          <p class="pub-venue"><em>IEEE International Conference on Biomedical Robotics and Biomechatronics (BioRob), 2026</em></p>
+          <!-- <p class="pub-desc">
+            A semantic mapping framework that combines visual understanding and language guidance to support autonomous navigation in assistive robotics.
+          </p> -->
+          <div class="pub-links">
+            <a href="#">paper (coming soon)</a>
+            <!-- <a href="#">project page</a> -->
+          </div>
+        </div>
+      </article>
 
-            <td style="padding:2.5%;width:32%;max-width:32%">
-              <a href="images/SadraCircleCroppedTransparent.png"><img style="width:100%;max-width:100%" alt="profile photo" src="images/SadraCircleCroppedTransparent.png" class="hoverZoomLink"></a>
-            </td>
+      <article class="publication">
+        <div class="publication-thumb"><img src="images/SurgiDiff.jpg" alt="SurgiDiff"></div>
+        <div>
+          <p class="pub-title"><strong>SurgiDiff: A Context-Aware Diffusion Recommender for Safe Surgical Autonomy</strong></p>
+          <p class="pub-authors">Bita Azad*, <span class="star-name">Sadra Zargarzadeh</span>*, F. Rudzicz</p>
+          <p class="pub-venue"><em>IEEE International Symposium on Medical Robotics (ISMR), 2026</em></p>
+          <!-- <p class="pub-desc">
+            A semantic mapping framework that combines visual understanding and language guidance to support autonomous navigation in assistive robotics.
+          </p> -->
+          <div class="pub-links">
+            <a href="#">paper (coming soon)</a>
+            <!-- <a href="#">project page</a> -->
+          </div>
+        </div>
+      </article>
 
-            <td style="padding:2.5%;width:63%;vertical-align:middle;background-color: #f9f9f9">
-              <p style="text-align:center">
-                <name>Sadra Zargarzadeh</name>
-              </p>
-              <p>
-               I am a 2nd-year M.Sc. student in Electrical and Computer Engineering at the University of Alberta supervised by <a href="http://www.ece.ualberta.ca/~mtavakol/pmwiki/"><strong>Prof. Mahdi Tavakoli</strong></a> 
-               in the <a href="http://www.ece.ualberta.ca/~tbs/pmwiki/">Telerobotic and Biorobotic Systems Group</a>. 
-               My research lies at the intersection of Machine Learning, Generative AI, and Robotics with a focus on medical and surgical applications.
-              </p> 
-              <p>
-               I was a recipient of the 2024 ETH Robotics Student Fellowship and served as a research fellow in the <a href="https://srl.ethz.ch/">Soft Robotics Lab</a> at ETH Zurich, and was awarded the E3 Fellowship at EPFL in 2023 at the <a href="https://www.epfl.ch/labs/create/">Computational Robot Design & Fabrication Lab</a> working on soft robotics. Previously, I earned my B.Sc. in Mechanical Engineering at Sharif University of Technology. 
-              </p>
+    <section id="service">
+      <h2>Academic Service & Teaching</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Academic Service</h3>
+          <ul>
+            <li>Reviewer for IEEE RA-L, ICRA, IROS, and ISMR.</li>
+            <li>Co-organized the <a href="https://conference.albertarobotics.ca/">Robotics and Intelligent Systems Expo (RISEx)</a>, 2025.</li>
+            <li>Presented research demos at <a href="https://conference.albertarobotics.ca/">Robotics and Intelligent Systems Expo (RISEx)</a>, Inventures Canada, and <a href="https://www.ualberta.ca/en/health-sciences/research/ai-and-health-hub.html">Alberta AI+Health Hub</a>.</li>
+            <li>Contributed to major research grant proposals (NFRF, NSERC CREATE, CFI, Amazon Research Awards).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Teaching</h3>
+          <ul>
+            <li>Teaching Assistant, University of Alberta: <br>
+              Medical Robotics, Linear Algebra, Engineering Mechanics, Calculus I and II.</li>
+            <li>Teaching Assistant, Sharif University of Technology: <br>
+              Robotics, Dynamics of Machinery, Machine Elements Design, Engineering Graphics.</li>
+            <li>Supervised 8 undergraduate researchers and interns on robotics and machine learning projects.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-              <p style="text-align:center">
-                sadra.zar@ualberta.ca &nbsp/&nbsp
-                <a href="http://www.linkedin.com/in/sadrazar/"> LinkedIn</a> &nbsp/&nbsp
-                <a href="https://scholar.google.com/citations?user=q2tkWIMAAAAJ&hl=en">Scholar</a>
-              </p>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <p></p>
 
-<!-- Affiliations Tile Rows -->
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-  <tbody>
-    <tr>
-      <td style="text-align: left; background-color: #eee">
-        <heading style="font-family: monospace; font-size: 22px; color: #444">Research and Work Experiences</heading>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table style="width:100%; text-align:center; background-color: #ffffff;">
-  <tr>
-    <td><img src="images/VectorLogo.jpg" alt="Vector Institute" width="150"></td>
-    <td><img src="images/UAlbertaLogo.jpg" alt="UAlberta" width="120"></td>
-    <td><img src="images/ETHLogo.jpg" alt="ETH Zurich" width="220"></td>
-
-  </tr>
-  <tr>
-    <td><img src="images/EPFLlogo.jpg" alt="EPFL" width="170"></td>
-    <td><img src="images/SharifLogo.jpg" alt="Sharif University" width="120"></td>
-    <td><img src="images/Lab2MarketLogo.png" alt="Lab2Market" width="200"></td>
-  </tr>
-</table>
-
-        <p></p>
-
-    <script>
-      var acc = document.getElementsByClassName("accordion");
-      var i;
-      for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var panel = this.nextElementSibling;
-          if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-          } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-          } 
-        });
-      }
-    </script>
-
-    <script>
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
-      }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <div id="particles-js"></div>
-    <script>
-      particlesJS.load("particles-js", "particles_config/particlesjs-config-gray.json",
-      function(){
-          console.log("particles.json loaded...")
-      })
-    </script>
-
-  </body>
+    <footer class="footer">
+      <p>
+        Last updated: 03-2026
+      </p>
+    </footer>
+  </main>
+</body>
 </html>
